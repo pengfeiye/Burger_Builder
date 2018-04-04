@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
-import Aux from '../../hoc/Aux'
-import Burger from '../../components/Burger/Burger'
-import BuildControl from '../../components/Burger/BuildControl/BuildControl'
+import React, { Component } from 'react';
+import Aux from '../../hoc/Aux';
+import Burger from '../../components/Burger/Burger';
+import BuildControl from '../../components/Burger/BuildControl/BuildControl';
 import Modal from '../../components/UI/Modal/Modal';
-import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import Backdrop from '../../components/UI/Backdrop/Backdrop'
 
 
 const INGREDIENT_PRICES = {
@@ -87,6 +88,8 @@ class BurgerBuilder extends Component {
     this.setState({modal: true})
   }
 
+  clearModal = () => {this.setState({modal:false})}
+
   render () {
     const disableInfo = {
       ...this.state.ingredients
@@ -97,9 +100,9 @@ class BurgerBuilder extends Component {
     }
     return (
       <Aux>
-        <Modal show={this.state.modal}>
-          <OrderSummary ingredients={this.state.ingredients}/>
-        </Modal>
+          <Modal show={this.state.modal} clearModal={this.clearModal}>
+            <OrderSummary ingredients={this.state.ingredients}/>
+          </Modal>
         <Burger ingredients={this.state.ingredients}/>
         <BuildControl
           ingredientAdded={this.addIngredientHandler}
