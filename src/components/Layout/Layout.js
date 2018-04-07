@@ -14,7 +14,9 @@ class Layout extends Component {
   }
 
   menuToggle = () => {
-    this.setState({showSideDrawer: true})
+    this.setState((prev)=>(
+      {showSideDrawer: !prev.showSideDrawer}
+    ))
   }
 
   render(){
